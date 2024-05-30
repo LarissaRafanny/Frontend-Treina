@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="paragrafo-saida"></p>
+    <div id="form-slect">
+        <option>1</option>
+    </div>
+
+    <input >
+    
+</body>
+<script>
+    function listarTarefasFetch() {
+            fetch("http://localhost:5000/tarefas")
+                .then((response) => response.json())
+                .then((json) => {
+                    let resposta = json;
+                    console.log(json);
+                    var saidaSelect = "<select class='form-select'>";
+                    var saida = "";
+                    saida = saida + "<table class='table'>";
+                    saida = saida + "<thead>";
+                    saida = saida + "<tr>";
+                    saida = saida + "<th>ID</th>";
+                    saida = saida + "<th>NOME</th>";
+                    saida = saida + "<th>DESCRIÇÃO</th>";
+                    saida = saida + "</tr>";
+                    saida = saida + "</thead>";
+                    saida = saida + "<tbody>";
+                    for (var i = 0; i < resposta.length; i++) {
+                        saidaSelect = saidaSelect + "<option value='" + resposta[i].id + "'>" + resposta[i].titulo + "</option>";
+
+
+                        saida = saida + "<tr>";
+                        saida = saida + "<td>" + resposta[i].id + "</td>";
+                        saida = saida + "<td>" + resposta[i].titulo + "</td>";
+                        saida = saida + "<td>" + resposta[i].decricao + "</td>";
+                        saida = saida + "</tr>";
+                    }
+                    saida = saida + "</tbody>";
+                    saida = saida + "</table>";
+
+                    saidaSelect = saidaSelect + "</select>";
+                    document.getElementById("div-resposta").innerHTML = saida;
+                    document.getElementById("div-resposta-select").innerHTML = saidaSelect;
+                    //alert(resposta[0].titulo);
+                });
+    }
+    function listarGoRest() {
+            const url = "LEIA: TROQUE TODO O TEXTO POR SUA URL, viu!!!!"
+            fetch(url)
+                .then((response) => response.json())
+                .then((json) => {
+                    let respostaGoRest = json;
+                    console.log(json);
+                    
+                });
+    }
+
+</script>
+</html>
